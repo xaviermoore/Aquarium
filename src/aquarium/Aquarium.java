@@ -31,20 +31,21 @@ public class Aquarium extends Frame implements Runnable{
     boolean runOK = true;
             
     Aquarium(){
+               
                 setTitle("The Aquarium");
         
                 tracker = new MediaTracker(this);
                 
                 fishImages[0] = Toolkit.getDefaultToolkit().getImage
-                        ("fish1.gif");
+                        ("src\\aquarium\\resources\\fish1.gif");
                 tracker.addImage(fishImages[0], 0);
                 
                 fishImages[1] = Toolkit.getDefaultToolkit().getImage
-                        ("fish2.gif");
+                        ("src\\aquarium\\resources\\fish2.gif");
                 tracker.addImage(fishImages[1], 0);
                 
                 aquariumImage = Toolkit.getDefaultToolkit().getImage
-                        ("bubbles.gif");
+                        ("src\\aquarium\\resources\\bubbles.gif");
                 tracker.addImage(aquariumImage, 0);
                 
                 try{
@@ -161,41 +162,44 @@ class Fish
     {
         
         if(random.nextInt() % 7 <= 1){
+
             velocity.x += random.nextInt() % 4; 
-            
+
             velocity.x = Math.min(velocity.x, 8);
-            velocity.x = Math.max(velocity.x,  -8);
-            
+            velocity.x = Math.max(velocity.x, -8);
+
             velocity.y += random.nextInt() % 4; 
-            
-            velocity.y = Math.min(velocity.x, 8);
-            velocity.y = Math.max(velocity.x, -8);
-            
-            location.x += velocity.x;
-            location.y += velocity.y;
-            
+
+            velocity.y = Math.min(velocity.y, 8);
+            velocity.y = Math.max(velocity.y, -8);
         }
-            if(location.x < edges.x){
-                location.x = edges.x;
-                velocity.x = -velocity.x;
-            }
-            
-            if((location.x + image1.getWidth(tank))
-                    > (edges.x + edges.width)){
-                location.x = edges.x + edges.width - image1.getWidth(tank);
-                velocity.x = -velocity.x;
-            }
-            
-            if(location.y < edges.y){
-                location.y = edges.y;
-                velocity.y = -velocity.y;
-            }
-            
-            if((location.y + image1.getHeight(tank))
-                    > (edges.y + edges.width)){
-                location.y = edges.y + edges.height - image1.getHeight(tank);
-                velocity.y = -velocity.y;
-            }
+    
+        location.x += velocity.x;
+        location.y += velocity.y;
+
+        if (location.x < edges.x) {
+            location.x = edges.x;
+            velocity.x = -velocity.x;
+        }
+
+        if ((location.x + image1.getWidth(tank))
+            > (edges.x + edges.width)){
+            location.x = edges.x + edges.width - 
+                image1.getWidth(tank);
+            velocity.x = -velocity.x;
+        }
+    
+        if (location.y < edges.y){
+            location.y = edges.y;
+            velocity.y = -velocity.y;
+        }
+
+        if ((location.y + image1.getHeight(tank))
+            > (edges.y + edges.height)){
+            location.y = edges.y + edges.height - 
+                image1.getHeight(tank);
+            velocity.y = -velocity.y;
+        }
     
     }
     
